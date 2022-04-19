@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_journal_prod_par_date" model="ir.actions.report">
+        <field name="name">Journal de production par date</field>
+        <field name="model">production.journal</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">wayhouse.journal_prod_par_date</field>
+        <field name="report_file">wayhouse.journal_prod_par_date</field>
+        <field name="binding_model_id" ref="model_production_journal"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_journal_prod_par_date_details" model="ir.actions.report">
+        <field name="name">Journal de production par date avec details</field>
+        <field name="model">production.journal</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">wayhouse.journal_prod_par_date_details</field>
+        <field name="report_file">wayhouse.journal_prod_par_date_details</field>
+        <field name="binding_model_id" ref="model_production_journal"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- add css / js -->
+    <template id="assets_backend" name="js assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="wayhouse/static/src/js/qrcode/html5-qrcode.min.js"></script>
+            <script type="text/javascript" src="wayhouse/static/src/js/qrcode/qrcode.min.js"></script>
+            <script type="text/javascript" src="wayhouse/static/src/js/wayhouse/script.js"></script>
+        </xpath>
+    </template>
+
+    <!-- BOF PRODUCT FORM -->
+    <record id="product_template_form" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="format" widget="selection"/>
+                <field name="reference"/>
+                <field name="metrage"/>
+                <field name="choix" widget="selection"/>
+                <field name="nuance"/>
+                <field name="calibre"/>
+                <field name="line_production" widget="selection"/>
+                <field name="date_fabrication"/>
+                <field name="tag"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_template_tree" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="tag"/>
+                <field name="date_fabrication"/>
+                <field name="format"/>
+                <field name="reference"/>
+                <field name="metrage"/>
+                <field name="choix"/>
+                <field name="nuance"/>
+                <field name="calibre"/>
+                <field name="line_production"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- EOF PRODUCT FORM -->
+	
+    <!-- BOF CREATE PRODUCT QRCODE --> 
+    <record id="view_create_product_qrcode_form" model="ir.ui.view">
+        <field name="name">create.product.qrcode.form</field>
+        <field name="model">create.product.qrcode</field>
+        <field name="arch" type="xml">
+            <form string="Générateur QR Code"  >
+                <group col="1">
+                    <field name="production_line" readonly="1" style="width:40%%" class="form-control form-control-lg wh-product-production_line"/>
+                    <field name="manufacturing_date" style="width:40%%" class="form-control form-control-lg wh-product-manufacturing_date"/>
+                </group>
+                <hr/>
+                <group col="1">
+                    <group>
+                            <field name="format" style="width:40%%"  class="form-control form-control-lg wh-product-format" widget="selection"/>
+                            <field name="reference" class="form-control form-control-lg wh-product-reference" widget="selection"/>
+                            <field name="metrage" style="width:40%%"  class="form-control form-control-lg wh-product-metrage"/>
+                    </group>
+                    <hr/>
+                    <group>
+                            <field name="choice" style="width:40%%"  class="form-control form-control-lg wh-product-choice" widget="selection"/>
+                            <field name="affich_nuance_calibre" invisible="1"/>
+                            <field name="shade" style="width:40%%"  class="form-control form-control-lg wh-product-shade" attrs="{'readonly':[('affich_nuance_calibre','=',True)]}" />
+                            <field name="caliber" style="width:40%%"  class="form-control form-control-lg wh-product-caliber" attrs="{'readonly':[('affich_nuance_calibre','=',True)]}"/>
+                    </group>
+                </group>
+                <div id="wh-product-qrcode-result" style="display:none">
+                    <div style="width:1900px; height:1300px; float: left; font-size: 35px;">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div style="width:100%%">
+                            <div style="width:50%%; height: 250px; float: left; text-align: center;">
+                                <div style="border: solid; width: 900px; height: 200px; margin: 20px;">
+                                    <br/>
+                                    <br/>
+                                    TAG
+                                </div>
+                            </div>
+                            <div style="width:50%%; height: 250px; float: right; text-align: center;">
+                                <img src="/wayhouse/static/src/img/multicerame.png" height="250px"/>
+                            </div>
+                        </div>
+                            
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div style="width:100%%; height: 400px; float: left;">
+                            <center>
+                                <table style="width: 80%%; text-align: left; font-size: 45px;">
+                                    <tr>
+                                        <th>Article</th>
+                                        <td class="wh-product-reference-val"> - </td>
+                                        <th>Format</th>
+                                        <td class="wh-product-format-val"> - </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Calibre</th>
+                                        <td class="wh-product-caliber-val"> - </td>
+                                        <th>Métrage</th>
+                                        <td class="wh-product-metrage-val"> - </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Choix</th>
+                                        <td class="wh-product-choice-val"> - </td>
+                                        <th>Unité de production</th>
+                                        <td class="wh-product-production_line-val"> - </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nuance</th>
+                                        <td class="wh-product-shade-val"> - </td>
+                                        <th>Date de fabrication</th>
+                                        <td class="wh-product-manufacturing_date-val"> - </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div style="width:100%%; height: 370px; float: left;">
+                            <div style="width:40%%; height: 350px; float: left; text-align: center;">
+                                <div style="border: solid; width: 90%%; height: 200px; margin-left: 20px;">
+                                    <br/>
+                                    <br/>
+                                    <p>Qualité</p>
+                                </div>
+                            </div>
+                            <div style="width:20%%; height: 350px; float: left; text-align: center;">
+                                <div id="wh-qrcode-place" style="width:100%%; text-align: center;"></div>
+                            </div>
+                            <div style="width:40%%; height: 350px; float: right; text-align: center;">
+                                <div style="border: solid; width: 90%%; height: 200px; margin-right: 20px;">
+                                    <br/>
+                                    <br/>
+                                    <p>Logistique</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer>
+                    <button string="Annuler" class="btn btn-secondary btn-lg" special="cancel"/>
+                    <button onclick="wh_create_product_qrcode();" string="Générer" class="btn btn-primary btn-lg" id="create-product-qrcode-frm-btn" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_product_qrcode" model="ir.actions.act_window">
+        <field name="name">Générateur QR Code</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.product.qrcode</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_product_qrcode_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem   name="Générateur QR Code" 
+                id="wayhouse.menu_product_qrcode" 
+                action="action_create_product_qrcode"
+                sequence="3"
+                parent="stock.menu_stock_inventory_control"/>
+				
+	
+     <!-- BOF ASSIGN PRODUCT --> 
+    <record id="view_assign_product_form" model="ir.ui.view">
+        <field name="name">assign.product.form</field>
+        <field name="model">assign.product</field>
+        <field name="arch" type="xml">
+            <form string="Assign product">
+                <group>
+                    <div id="wh-qrcode-reader"></div>
+                </group>
+                
+                <group col="2" invisible="1">
+                    <group>
+                        <field name="qrcode" class="form-control form-control-lg wh-product-qrcode"/>
+                    </group>
+                    <group>
+                        <field name="tag" class="form-control form-control-lg wh-product-tag"/>
+                    </group>
+                </group>
+
+                <footer>
+                    <button string="Annuler" class="btn btn-secondary btn-lg" special="cancel"/>                    
+                    <button onclick="whScanQrcode();" string="Scaner QR Code" class="btn btn-primary btn-lg" />
+                    <button onclick="whReceiveProducts();" string="Recevoir" class="btn btn-primary btn-lg"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_assignment" model="ir.actions.act_window">
+        <field name="name">Affectation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">assign.product</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_assign_product_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!--record id="view_users_form_inherit" model="ir.ui.view">
+
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+               <field name="up_user" />
+             </field>
+        </field>
+    </record-->
+
+    <menuitem   name="Affectation" 
+                id="wayhouse.menu_product_assignment" 
+                action="action_product_assignment"
+                sequence="4"
+                parent="stock.menu_stock_inventory_control"/>
+     <!-- EOF ASSIGN PRODUCT --> 
+
+</odoo>

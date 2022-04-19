@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+    <record id="action_chauffeur_list" model="ir.actions.act_window">
+            <field name="name">chauffeur</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">chauffeur.list</field>
+            <field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+			<field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre premier chauffeur !
+            </p>
+        </field>
+    </record>
+	
+	<record id="view_chauffeur_list_tree" model="ir.ui.view">
+        <field name="name">chauffeur.list.tree</field>
+        <field name="model">chauffeur.list</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+	
+	<record id="view_chauffeur_list_form" model="ir.ui.view">
+        <field name="name">chauffeur.list.form</field>
+        <field name="model">chauffeur.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="prenom"/>
+                        </group>
+                        <group>
+                            <field name="tel"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem   name="Liste des chauffeurs"
+                id="wayhouse.menu_chauffeur_list" 
+                action="action_chauffeur_list"
+                sequence="5"
+                parent="wayhouse.menu_format"/>
+
+</odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_create_product_qrcode,access.create.product.qrcode,model_create_product_qrcode,base.group_user,1,1,1,1
+access_assign_product,access.assign.product,model_assign_product,base.group_user,1,1,1,1
+access_article_format,access.article.format,model_article_format,base.group_user,1,1,1,1
+access_format_list,access.format.list,model_format_list,base.group_user,1,1,1,1
+access_choix_list,access.choix.list,model_choix_list,base.group_user,1,1,1,1
+access_production_journal,access.production.journal,model_production_journal,base.group_user,1,1,1,1
+access_camion_list,access.camion.list,model_camion_list,base.group_user,1,1,1,1
+access_cariste_list,access.cariste.list,model_cariste_list,base.group_user,1,1,1,1
+access_chauffeur_list,access.chauffeur.list,model_chauffeur_list,base.group_user,1,1,1,1
+access_chauffeur_list,access.chauffeur.list,model_chauffeur_list,base.group_user,1,1,1,1

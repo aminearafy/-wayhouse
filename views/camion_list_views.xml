@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+    <record id="action_camion_list" model="ir.actions.act_window">
+            <field name="name">camion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">camion.list</field>
+            <field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+			<field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre premier camion !
+            </p>
+        </field>
+    </record>
+	
+	<record id="view_camion_list_tree" model="ir.ui.view">
+        <field name="name">camion.list.tree</field>
+        <field name="model">camion.list</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+	
+	<record id="view_camion_list_form" model="ir.ui.view">
+        <field name="name">camion.list.form</field>
+        <field name="model">camion.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="marque"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem   name="Liste des camions"
+                id="wayhouse.menu_camion_list" 
+                action="action_camion_list"
+                sequence="6"
+                parent="wayhouse.menu_format"/>
+
+
+</odoo>

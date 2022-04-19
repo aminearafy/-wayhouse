@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_journal_prod_par_date_form" model="ir.ui.view">
+        <field name="name">production.journal.form</field>
+        <field name="model">production.journal</field>
+        <field name="arch" type="xml">
+            <form string="Journal de production par date"  >
+                <group col="2">
+					  <group>
+                        <field name="date_deb" />
+                        <field name="date_fin" />
+                      </group>
+                      <group>
+                        <field name="unite_id" widget="selection" />
+                        <field name="par_details" />
+                      </group>
+                        <field name="total_tags" invisible="1"/>
+                        <field name="total_metrage" invisible="1"/>
+                </group>
+                <footer>
+                    <button string='Imprimer' name="check_report" type="object" default_focus="1" class="oe_highlight"/>
+                    <button string="Annuler" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_journal_prod_par_date" model="ir.actions.act_window">
+        <field name="name">Journal de production par date</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">production.journal</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_journal_prod_par_date_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Rapports de production" id="wayhouse.menu_rapport_prod" parent="stock.menu_warehouse_report"/>
+
+    <menuitem   name="Journal de production par date"
+                id="wayhouse.menu_journal_prod_par_date"
+                action="action_journal_prod_par_date"
+                sequence="1"
+                parent="wayhouse.menu_rapport_prod"/>
+
+
+</odoo>

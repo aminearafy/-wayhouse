@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+    <record id="action_format_list" model="ir.actions.act_window">
+            <field name="name">Formats</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">format.list</field>
+            <field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+			<field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre premier format !
+            </p>
+        </field>
+    </record>
+	
+	<record id="view_format_list_tree" model="ir.ui.view">
+        <field name="name">format.list.tree</field>
+        <field name="model">format.list</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+	
+	<record id="view_format_list_form" model="ir.ui.view">
+        <field name="name">format.list.form</field>
+        <field name="model">format.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem name="Tables de bases" id="wayhouse.menu_format" parent="stock.menu_stock_config_settings"/>
+    <menuitem   name="Liste des formats"
+                id="wayhouse.menu_format_list" 
+                action="action_format_list"
+                sequence="1"
+                parent="wayhouse.menu_format"/>
+
+
+</odoo>
